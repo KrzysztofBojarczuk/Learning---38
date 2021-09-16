@@ -1,23 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState} from 'react';
 
 function App() {
+
+  const [bmi, setBmi] = useState();
+  const [weight, setWeight] = useState();
+  const [height, setHeight] = useState();
+  const handleBmi = () => {
+    let val = ( [Number(weight) / Number(height) / Number(height)] * 10000)
+    .toFixed(1);
+    setBmi(val)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Bmi cal</h1>
+      <input
+      className="css-input"
+      type="text"
+      onChange={(e) => setHeight(e.target.value)}
+      placeholder="height in cm" 
+      />
+      <input
+      className="css-input"
+      type="text"
+      onChange={(e) => setWeight(e.target.value)}
+      placeholder="weight in kg"
+      />
+    <button className="myButton"
+    onClick={handleBmi}>Calculate</button>
+    <h1>{bmi}</h1>
     </div>
   );
 }
